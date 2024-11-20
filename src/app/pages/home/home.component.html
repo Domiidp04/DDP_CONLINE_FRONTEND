@@ -1,0 +1,65 @@
+<!-- <div class="home-container">
+  <div class="profile-header">
+    <div class="profile-image-container">
+      <!-- <img [src]="user()?.profilePictureUrl | safeUrl" alt="Foto de perfil" class="profile-image" />
+    </div>
+    <div class="profile-details">
+      <h1 class="profile-name">{{ user()?.firstName }} {{ user()?.lastName }}</h1>
+      <p class="profile-email">{{ user()?.email }}</p>
+      <p class="profile-id">Google ID: {{ user()?.googleId }}</p>
+      <p class="profile-created">Miembro desde: {{ user()?.createdAt | date: 'medium' }}</p>
+    </div>
+  </div>
+
+  <div class="profile-actions">
+    <button class="btn-follow">Seguir</button>
+    <button class="btn-logout" (click)="onLogout()">Logout</button>
+  </div>
+</div>
+
+<img [src]="user()?.profilePictureUrl | safeUrl" alt="Foto de perfil" class="profile-image" /> -->
+
+<div class="home-container">
+  <!-- Sidebar (Lista de chats) -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img src="user-avatar.png" alt="User Avatar" class="user-avatar" />
+      <div class="sidebar-icons">
+        <i class="icon icon-settings"></i>
+        <i class="icon icon-new-chat"></i>
+      </div>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar chats o contactos..." />
+    </div>
+    <div class="chat-list">
+      <div class="chat-item">
+        <img src="chat-avatar1.png" alt="Chat Avatar" class="chat-avatar" />
+        <div class="chat-info">
+          <h4>Contacto 1</h4>
+          <p>Último mensaje...</p>
+        </div>
+        <span class="chat-time">10:30</span>
+      </div>
+      <div class="chat-item">
+        <img src="chat-avatar2.png" alt="Chat Avatar" class="chat-avatar" />
+        <div class="chat-info">
+          <h4>Contacto 2</h4>
+          <p>Hola, ¿cómo estás?</p>
+        </div>
+        <span class="chat-time">9:57</span>
+      </div>
+      <!-- Agrega más chats aquí -->
+    </div>
+  </div>
+
+  <!-- Main Content (Vista principal) -->
+  <div class="main-content">
+    <div class="welcome-message">
+      <img src="laptop-image.png" alt="Laptop Illustration" class="welcome-image" />
+      <h2>Selecciona un chat para comenzar</h2>
+      <p>O descarga nuestra aplicación para disfrutar de la mejor experiencia.</p>
+      <button class="download-button">Descargar ahora</button>
+    </div>
+  </div>
+</div>

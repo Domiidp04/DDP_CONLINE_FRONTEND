@@ -17,7 +17,8 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "src/aws-pollfill-like-file.ts"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -92,5 +93,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "ea1d1529-b6e5-4a5d-9eb0-cc544fb9da2f"
   }
 }
