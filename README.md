@@ -16,7 +16,7 @@
   <a href="#autor">Autor</a> •
 </p>
 
-![Conline Screenshot](https://example.com/screenshot.png) <!-- Aquí debes poner el enlace a una imagen de tu proyecto -->
+https://github.com/user-attachments/assets/f2bd6a16-4771-4897-a337-f1a73bf074b4
 
 # Conline - General Online Chat
 
