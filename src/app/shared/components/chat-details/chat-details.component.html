@@ -1,0 +1,37 @@
+<div class="chat-details" >
+  <div class="chat-header">
+    <img
+      src="Logo-Conline.webp"
+      alt="Avatar de contacto"
+      class="contact-avatar"
+    />
+    <div class="contact-info">
+      <h4>Chat General</h4>
+    </div>
+  </div>
+
+  <ul class="messages" #messageList>
+    <li
+      class="message"
+      *ngFor="let item of messages"
+      [ngClass]="{ 'right': item.sender.email === username, 'left': item.sender.email !== username }"
+    >
+      <div class="avatar"></div>
+      <div class="text_wrapper">
+        <div class="text">
+          <strong>{{ item.sender.email }}:</strong> {{ item.content }}
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="message-input">
+    <input
+      type="text"
+      placeholder="Escribe un mensaje..."
+      [(ngModel)]="messageInput"
+      (keyup.enter)="sendMessage()"
+    />
+    <button (click)="sendMessage()">Enviar</button>
+  </div>
+</div>

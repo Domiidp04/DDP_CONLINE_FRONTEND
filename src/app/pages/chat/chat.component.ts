@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { WebSocketService } from '../../services/web-socket.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { ChatMessage } from '../../model/ChatMessage.model';
-import { UserService } from '../../services/user.service';
+import { ChatMessage } from '../../core/models/ChatMessage.model';
+import { UserService } from '../../core/services/user.service';
+import { WebSocketService } from '../../core/services/web-socket.service';
 
 @Component({
   selector: 'app-chat',
@@ -14,27 +13,24 @@ import { UserService } from '../../services/user.service';
   styleUrl: './chat.component.css'
 })
 export class ChatComponent implements OnInit {
-  messageInput: string = '';
-  messageList: ChatMessage[] = [];
-  username: string = 'Desconocido'; // Inicializa con un valor predeterminado
+  public messageInput: string = '';
+  public messageList: ChatMessage[] = [];
+  public username: string = 'Desconocido';
+  public senderId: number;
 
-  constructor(private chatService: WebSocketService, private userService: UserService) {}
+  constructor(private chatService: WebSocketService, private userService: UserService) { }
 
   ngOnInit(): void {
-    // Carga mensajes desde el servicio WebSocket
-    this.chatService.getMessages().subscribe((messages) => {
-      this.messageList = messages;
-    });
-
     this.loadUserInfo();
   }
 
   private loadUserInfo(): void {
-    const accessToken = localStorage.getItem('token'); // Token almacenado en el localStorage
+    const accessToken = localStorage.getItem('token');
     if (accessToken) {
       this.userService.getData().subscribe({
         next: (userInfo) => {
           this.username = userInfo.email || 'Usuario';
+          this.senderId = userInfo.id;
         },
         error: (error) => {
           console.error('Error obteniendo información del usuario:', error);
@@ -45,7 +41,7 @@ export class ChatComponent implements OnInit {
 
   sendMessage(): void {
     if (this.messageInput.trim()) {
-      this.chatService.sendMessage(this.messageInput, this.username);
+      this.chatService.sendMessage(this.senderId, this.messageInput);
       this.messageInput = '';
     }
   }

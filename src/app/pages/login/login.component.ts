@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  public loginUrl: string | null = null;
+  public loginUrl: string | null;
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router) { }
 
@@ -20,15 +21,13 @@ export class LoginComponent implements OnInit {
     this.getToken();
   }
 
-  public getUrl(): any{
-    this.authService.getAuthUrl().subscribe((response:any) => {
-      this.loginUrl = response.authURL;
-    });
+  private getUrl(): void {
+    this.authService.getAuthUrl().subscribe((response: any) => this.loginUrl = response.authURL);
   }
 
-  public getToken(): void{
-    this.route.queryParams.subscribe( params => {
-      if(params['code'] !== undefined) {
+  private getToken(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['code'] !== undefined) {
         this.authService.getToken(params['code']).subscribe(
           () => this.router.navigate(['/home'])
         );

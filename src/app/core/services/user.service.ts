@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { User } from '../model/User.model';
+import { User } from '../models/User.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,6 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-
   public getData(): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/profile`, {
       headers: new HttpHeaders({
@@ -21,10 +20,8 @@ export class UserService {
     }).pipe(
       catchError((error) => {
         if (error.status === 401) {
-          // Lanza un error específico para manejarlo en el componente
           return throwError(() => new Error('Unauthorized'));
         }
-        // Relanza otros errores si es necesario
         return throwError(() => error);
       })
     );
