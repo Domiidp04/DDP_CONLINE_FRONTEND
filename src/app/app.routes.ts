@@ -16,16 +16,6 @@ export const routes: Routes = [
   },
 
   {
-    path: 'chat',
-    loadComponent: () => import('./pages/chat/chat.component').then((c) => c.ChatComponent),
-    canActivate: [authGuard]
-  },
-
-  {
-    path: 'contact', loadComponent: () => import('./shared/components/contacts/contacts.component').then((c) => c.ContactsComponent)
-  },
-
-  {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
